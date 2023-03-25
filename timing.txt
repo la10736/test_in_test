@@ -1,56 +1,35 @@
 # Legacy
 
-```text
-test tests::slow::a_10_10::b_08_8::c_05_5::d_06_6 ... ok
+Build 403s
 
-test result: ok. 10000 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.99s
+```text
+test tests::slow::_a_10_10::_b_10_10::_c_10_10::_d_10_10::_e_08_8 ... ok
+test tests::slow::_a_10_10::_b_10_10::_c_10_10::_d_10_10::_e_09_9 ... ok
+test tests::slow::_a_10_10::_b_10_10::_c_10_10::_d_10_10::_e_10_10 ... ok
+
+test result: ok. 100000 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.36s
 
    Doc-tests test_in_test
 
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-
-
-real    1m16.376s
-user    1m53.381s
-sys     0m5.155s
 ```
 
-# Global HashMap
+# Thread local 100000
+
+Build 105s
 
 ```text
-test tests::fast::a_10_10::b_10_10::c_04_4::d_03_3 ... ok
+test tests::thread_local::a_10_10::b_10_10::c_10_10::d_10_10::e_08_8 ... ok
+test tests::thread_local::a_10_10::b_10_10::c_10_10::d_10_10::e_09_9 ... ok
+test tests::thread_local::a_10_10::b_10_10::c_10_10::d_10_10::e_10_10 ... ok
 
-test result: ok. 10000 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.85s
+test result: ok. 100000 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.17s
 
    Doc-tests test_in_test
 
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-
-
-real    0m15.705s
-user    0m16.525s
-sys     0m1.647s
-```
-
-# Thread local
-
-```text
-test tests::thread_local::a_10_10::b_10_10::c_10_10::d_04_4 ... ok
-
-test result: ok. 10000 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.80s
-
-   Doc-tests test_in_test
-
-running 0 tests
-
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-
-
-real    0m12.203s
-user    0m14.161s
-sys     0m1.577s
 ```

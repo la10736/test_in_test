@@ -1,0 +1,5025 @@
+
+<html>
+<head>
+  <title>Cargo Build Timings — test_in_test 0.1.0</title>
+  <meta charset="utf-8">
+<style type="text/css">
+html {
+  font-family: sans-serif;
+}
+
+.canvas-container {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+h1 {
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.graph {
+  display: block;
+}
+
+.my-table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.my-table th {
+  color: #d5dde5;
+  background: #1b1e24;
+  border-bottom: 4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.my-table th:first-child {
+  border-top-left-radius: 3px;
+}
+
+.my-table th:last-child {
+  border-top-right-radius: 3px;
+  border-right:none;
+}
+
+.my-table tr {
+  border-top: 1px solid #c1c3d1;
+  border-bottom: 1px solid #c1c3d1;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.my-table tr:first-child {
+  border-top:none;
+}
+
+.my-table tr:last-child {
+  border-bottom:none;
+}
+
+.my-table tr:nth-child(odd) td {
+  background: #ebebeb;
+}
+
+.my-table tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+
+.my-table tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+
+.my-table td {
+  background: #ffffff;
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 14px;
+  border-right: 1px solid #C1C3D1;
+}
+
+.my-table td:last-child {
+  border-right: 0px;
+}
+
+.summary-table td:first-child {
+  vertical-align: top;
+  text-align: right;
+}
+
+.input-table td {
+  text-align: center;
+}
+
+.error-text {
+  color: #e80000;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Cargo Build Timings</h1>
+See <a href="https://doc.rust-lang.org/nightly/cargo/reference/timings.html">Documentation</a>
+
+<table class="my-table summary-table">
+  <tr>
+    <td>Targets:</td><td>test_in_test 0.1.0 (lib)</td>
+  </tr>
+  <tr>
+    <td>Profile:</td><td>dev</td>
+  </tr>
+  <tr>
+    <td>Fresh units:</td><td>0</td>
+  </tr>
+  <tr>
+    <td>Dirty units:</td><td>51</td>
+  </tr>
+  <tr>
+    <td>Total units:</td><td>51</td>
+  </tr>
+  <tr>
+    <td>Max concurrency:</td><td>16 (jobs=16 ncpu=16)</td>
+  </tr>
+  <tr>
+    <td>Build start:</td><td>2023-03-25T17:14:19Z</td>
+  </tr>
+  <tr>
+    <td>Total time:</td><td>110.3s (1m 50.3s)</td>
+  </tr>
+  <tr>
+    <td>rustc:</td><td>rustc 1.67.1 (d5a82bbd2 2023-02-07)<br>Host: x86_64-unknown-linux-gnu<br>Target: x86_64-unknown-linux-gnu</td>
+  </tr>
+  <tr>
+    <td>Max (global) rustc threads concurrency:</td><td>0</td>
+  </tr>
+
+</table>
+
+<table class="input-table">
+  <tr>
+    <td><label for="min-unit-time">Min unit time:</label></td>
+    <td><label for="scale">Scale:</label></td>
+  </tr>
+  <tr>
+    <td><input type="range" min="0" max="30" step="0.1" value="0" id="min-unit-time"></td>
+    <td><input type="range" min="1" max="50" value="20" id="scale"></td>
+  </tr>
+  <tr>
+    <td><output for="min-unit-time" id="min-unit-time-output"></output></td>
+    <td><output for="scale" id="scale-output"></output></td>
+  </tr>
+</table>
+
+<div id="pipeline-container" class="canvas-container">
+ <canvas id="pipeline-graph" class="graph" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+ <canvas id="pipeline-graph-lines" style="position: absolute; left: 0; top: 0; z-index: 1; pointer-events:none;"></canvas>
+</div>
+<div class="canvas-container">
+  <canvas id="timing-graph" class="graph"></canvas>
+</div>
+
+<table class="my-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unit</th>
+      <th>Total</th>
+      <th>Codegen</th>
+      <th>Features</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr>
+  <td>1.</td>
+  <td>test_in_test v0.1.0 lib (test)</td>
+  <td>104.8s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>2.</td>
+  <td>syn v1.0.109</td>
+  <td>2.3s</td>
+  <td>0.6s (28%)</td>
+  <td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, quote, visit, visit-mut</td>
+</tr>
+
+<tr>
+  <td>3.</td>
+  <td>rstest_macros v0.16.0</td>
+  <td>1.6s</td>
+  <td></td>
+  <td>async-timeout</td>
+</tr>
+
+<tr>
+  <td>4.</td>
+  <td>futures-util v0.3.27</td>
+  <td>1.5s</td>
+  <td>0.1s (4%)</td>
+  <td>alloc, async-await, async-await-macro, channel, futures-channel, futures-io, futures-macro, futures-sink, io, memchr, sink, slab, std</td>
+</tr>
+
+<tr>
+  <td>5.</td>
+  <td>tokio v1.26.0</td>
+  <td>1.2s</td>
+  <td>0.3s (21%)</td>
+  <td>default, macros, rt, sync, test-util, time, tokio-macros</td>
+</tr>
+
+<tr>
+  <td>6.</td>
+  <td>futures-macro v0.3.27</td>
+  <td>0.7s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>7.</td>
+  <td>tokio-macros v1.8.2</td>
+  <td>0.6s</td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>8.</td>
+  <td>proc-macro2 v1.0.52 build script</td>
+  <td>0.4s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>9.</td>
+  <td>memchr v2.5.0</td>
+  <td>0.4s</td>
+  <td>0.1s (18%)</td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>10.</td>
+  <td>proc-macro2 v1.0.52</td>
+  <td>0.4s</td>
+  <td>0.1s (33%)</td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>11.</td>
+  <td>syn v1.0.109 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, quote, visit, visit-mut</td>
+</tr>
+
+<tr>
+  <td>12.</td>
+  <td>quote v1.0.26 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>13.</td>
+  <td>semver v1.0.17 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>14.</td>
+  <td>futures-timer v3.0.2</td>
+  <td>0.3s</td>
+  <td>0.1s (35%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>15.</td>
+  <td>memchr v2.5.0 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>16.</td>
+  <td>autocfg v1.1.0</td>
+  <td>0.3s</td>
+  <td>0.1s (41%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>17.</td>
+  <td>futures-util v0.3.27 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>alloc, async-await, async-await-macro, channel, futures-channel, futures-io, futures-macro, futures-sink, io, memchr, sink, slab, std</td>
+</tr>
+
+<tr>
+  <td>18.</td>
+  <td>futures-task v0.3.27 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>19.</td>
+  <td>futures-core v0.3.27 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>20.</td>
+  <td>futures-channel v0.3.27 build script</td>
+  <td>0.3s</td>
+  <td></td>
+  <td>alloc, futures-sink, sink, std</td>
+</tr>
+
+<tr>
+  <td>21.</td>
+  <td>semver v1.0.17</td>
+  <td>0.2s</td>
+  <td>0.1s (27%)</td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>22.</td>
+  <td>tokio v1.26.0 build script</td>
+  <td>0.2s</td>
+  <td></td>
+  <td>default, macros, rt, sync, test-util, time, tokio-macros</td>
+</tr>
+
+<tr>
+  <td>23.</td>
+  <td>rstest_macros v0.16.0 build script</td>
+  <td>0.2s</td>
+  <td></td>
+  <td>async-timeout</td>
+</tr>
+
+<tr>
+  <td>24.</td>
+  <td>futures-io v0.3.27</td>
+  <td>0.2s</td>
+  <td>0.1s (43%)</td>
+  <td>std</td>
+</tr>
+
+<tr>
+  <td>25.</td>
+  <td>slab v0.4.8 build script</td>
+  <td>0.2s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>26.</td>
+  <td>rustc_version v0.4.0</td>
+  <td>0.2s</td>
+  <td>0.1s (42%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>27.</td>
+  <td>quote v1.0.26</td>
+  <td>0.2s</td>
+  <td>0.0s (28%)</td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>28.</td>
+  <td>futures-channel v0.3.27</td>
+  <td>0.1s</td>
+  <td>0.0s (8%)</td>
+  <td>alloc, futures-sink, sink, std</td>
+</tr>
+
+<tr>
+  <td>29.</td>
+  <td>futures-task v0.3.27</td>
+  <td>0.1s</td>
+  <td>0.0s (12%)</td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>30.</td>
+  <td>unicode-ident v1.0.8</td>
+  <td>0.1s</td>
+  <td>0.0s (20%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>31.</td>
+  <td>futures-executor v0.3.27</td>
+  <td>0.1s</td>
+  <td>0.0s (35%)</td>
+  <td>std</td>
+</tr>
+
+<tr>
+  <td>32.</td>
+  <td>futures-core v0.3.27</td>
+  <td>0.1s</td>
+  <td>0.0s (23%)</td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>33.</td>
+  <td>slab v0.4.8</td>
+  <td>0.1s</td>
+  <td>0.0s (8%)</td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>34.</td>
+  <td>futures-sink v0.3.27</td>
+  <td>0.1s</td>
+  <td>0.0s (8%)</td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>35.</td>
+  <td>pin-utils v0.1.0</td>
+  <td>0.1s</td>
+  <td>0.0s (21%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>36.</td>
+  <td>pin-project-lite v0.2.9</td>
+  <td>0.1s</td>
+  <td>0.0s (7%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>37.</td>
+  <td>slab v0.4.8 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>38.</td>
+  <td>tokio v1.26.0 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, macros, rt, sync, test-util, time, tokio-macros</td>
+</tr>
+
+<tr>
+  <td>39.</td>
+  <td>semver v1.0.17 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>40.</td>
+  <td>cfg-if v1.0.0</td>
+  <td>0.1s</td>
+  <td>0.0s (8%)</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>41.</td>
+  <td>rstest_macros v0.16.0 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>async-timeout</td>
+</tr>
+
+<tr>
+  <td>42.</td>
+  <td>rstest v0.16.0</td>
+  <td>0.1s</td>
+  <td>0.0s (10%)</td>
+  <td>async-timeout, default</td>
+</tr>
+
+<tr>
+  <td>43.</td>
+  <td>quote v1.0.26 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>44.</td>
+  <td>syn v1.0.109 build script (run)</td>
+  <td>0.1s</td>
+  <td></td>
+  <td>clone-impls, default, derive, extra-traits, full, parsing, printing, proc-macro, quote, visit, visit-mut</td>
+</tr>
+
+<tr>
+  <td>45.</td>
+  <td>proc-macro2 v1.0.52 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>default, proc-macro</td>
+</tr>
+
+<tr>
+  <td>46.</td>
+  <td>futures v0.3.27</td>
+  <td>0.0s</td>
+  <td>0.0s (9%)</td>
+  <td>alloc, async-await, default, executor, futures-executor, std</td>
+</tr>
+
+<tr>
+  <td>47.</td>
+  <td>futures-util v0.3.27 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>alloc, async-await, async-await-macro, channel, futures-channel, futures-io, futures-macro, futures-sink, io, memchr, sink, slab, std</td>
+</tr>
+
+<tr>
+  <td>48.</td>
+  <td>futures-task v0.3.27 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>49.</td>
+  <td>futures-core v0.3.27 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>alloc, std</td>
+</tr>
+
+<tr>
+  <td>50.</td>
+  <td>memchr v2.5.0 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>default, std</td>
+</tr>
+
+<tr>
+  <td>51.</td>
+  <td>futures-channel v0.3.27 build script (run)</td>
+  <td>0.0s</td>
+  <td></td>
+  <td>alloc, futures-sink, sink, std</td>
+</tr>
+</tbody>
+</table>
+<script>
+DURATION = 111;
+const UNIT_DATA = [
+  {
+    "i": 0,
+    "name": "proc-macro2",
+    "version": "1.0.52",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.38,
+    "rmeta_time": null,
+    "unlocked_units": [
+      31
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 1,
+    "name": "unicode-ident",
+    "version": "1.0.8",
+    "mode": "todo",
+    "target": "",
+    "start": 0.13,
+    "duration": 0.12,
+    "rmeta_time": 0.1,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 2,
+    "name": "quote",
+    "version": "1.0.26",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.33,
+    "rmeta_time": null,
+    "unlocked_units": [
+      28
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 3,
+    "name": "semver",
+    "version": "1.0.17",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.31,
+    "rmeta_time": null,
+    "unlocked_units": [
+      27
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 4,
+    "name": "futures-core",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.26,
+    "rmeta_time": null,
+    "unlocked_units": [
+      18
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 5,
+    "name": "syn",
+    "version": "1.0.109",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.34,
+    "rmeta_time": null,
+    "unlocked_units": [
+      30
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 6,
+    "name": "autocfg",
+    "version": "1.1.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.13,
+    "duration": 0.3,
+    "rmeta_time": 0.18,
+    "unlocked_units": [
+      23,
+      24
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 7,
+    "name": "memchr",
+    "version": "2.5.0",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.31,
+    "rmeta_time": null,
+    "unlocked_units": [
+      25
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 8,
+    "name": "futures-channel",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.25,
+    "rmeta_time": null,
+    "unlocked_units": [
+      17
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 9,
+    "name": "futures-task",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.26,
+    "rmeta_time": null,
+    "unlocked_units": [
+      20
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 10,
+    "name": "futures-sink",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 0.13,
+    "duration": 0.09,
+    "rmeta_time": 0.08,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 11,
+    "name": "futures-util",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.13,
+    "duration": 0.27,
+    "rmeta_time": null,
+    "unlocked_units": [
+      22
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 12,
+    "name": "pin-project-lite",
+    "version": "0.2.9",
+    "mode": "todo",
+    "target": "",
+    "start": 0.13,
+    "duration": 0.08,
+    "rmeta_time": 0.07,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 13,
+    "name": "futures-io",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 0.13,
+    "duration": 0.18,
+    "rmeta_time": 0.1,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 14,
+    "name": "pin-utils",
+    "version": "0.1.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.13,
+    "duration": 0.08,
+    "rmeta_time": 0.07,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 15,
+    "name": "cfg-if",
+    "version": "1.0.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.14,
+    "duration": 0.07,
+    "rmeta_time": 0.06,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 16,
+    "name": "futures-timer",
+    "version": "3.0.2",
+    "mode": "todo",
+    "target": "",
+    "start": 0.21,
+    "duration": 0.31,
+    "rmeta_time": 0.2,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 17,
+    "name": "futures-channel",
+    "version": "0.3.27",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.39,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 18,
+    "name": "futures-core",
+    "version": "0.3.27",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.39,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [
+      19
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 19,
+    "name": "futures-core",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 0.39,
+    "duration": 0.1,
+    "rmeta_time": 0.08,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      29
+    ]
+  },
+  {
+    "i": 20,
+    "name": "futures-task",
+    "version": "0.3.27",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.4,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [
+      21
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 21,
+    "name": "futures-task",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 0.4,
+    "duration": 0.14,
+    "rmeta_time": 0.13,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 22,
+    "name": "futures-util",
+    "version": "0.3.27",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.41,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 23,
+    "name": "slab",
+    "version": "0.4.8",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.43,
+    "duration": 0.18,
+    "rmeta_time": null,
+    "unlocked_units": [
+      34
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 24,
+    "name": "tokio",
+    "version": "1.26.0",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.43,
+    "duration": 0.19,
+    "rmeta_time": null,
+    "unlocked_units": [
+      35
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 25,
+    "name": "memchr",
+    "version": "2.5.0",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.44,
+    "duration": 0.0,
+    "rmeta_time": null,
+    "unlocked_units": [
+      26
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 26,
+    "name": "memchr",
+    "version": "2.5.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.44,
+    "duration": 0.37,
+    "rmeta_time": 0.3,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 27,
+    "name": "semver",
+    "version": "1.0.17",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.45,
+    "duration": 0.07,
+    "rmeta_time": null,
+    "unlocked_units": [
+      32
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 28,
+    "name": "quote",
+    "version": "1.0.26",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.46,
+    "duration": 0.06,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 29,
+    "name": "futures-channel",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 0.47,
+    "duration": 0.15,
+    "rmeta_time": 0.14,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 30,
+    "name": "syn",
+    "version": "1.0.109",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.47,
+    "duration": 0.06,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 31,
+    "name": "proc-macro2",
+    "version": "1.0.52",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.51,
+    "duration": 0.04,
+    "rmeta_time": null,
+    "unlocked_units": [
+      33
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 32,
+    "name": "semver",
+    "version": "1.0.17",
+    "mode": "todo",
+    "target": "",
+    "start": 0.52,
+    "duration": 0.21,
+    "rmeta_time": 0.15,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      36
+    ]
+  },
+  {
+    "i": 33,
+    "name": "proc-macro2",
+    "version": "1.0.52",
+    "mode": "todo",
+    "target": "",
+    "start": 0.55,
+    "duration": 0.36,
+    "rmeta_time": 0.24,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      38
+    ]
+  },
+  {
+    "i": 34,
+    "name": "slab",
+    "version": "0.4.8",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.61,
+    "duration": 0.08,
+    "rmeta_time": null,
+    "unlocked_units": [
+      37
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 35,
+    "name": "tokio",
+    "version": "1.26.0",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 0.63,
+    "duration": 0.07,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 36,
+    "name": "rustc_version",
+    "version": "0.4.0",
+    "mode": "todo",
+    "target": "",
+    "start": 0.67,
+    "duration": 0.17,
+    "rmeta_time": 0.1,
+    "unlocked_units": [
+      39
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 37,
+    "name": "slab",
+    "version": "0.4.8",
+    "mode": "todo",
+    "target": "",
+    "start": 0.69,
+    "duration": 0.1,
+    "rmeta_time": 0.09,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 38,
+    "name": "quote",
+    "version": "1.0.26",
+    "mode": "todo",
+    "target": "",
+    "start": 0.79,
+    "duration": 0.15,
+    "rmeta_time": 0.11,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      40
+    ]
+  },
+  {
+    "i": 39,
+    "name": "rstest_macros",
+    "version": "0.16.0",
+    "mode": "todo",
+    "target": " build script",
+    "start": 0.84,
+    "duration": 0.19,
+    "rmeta_time": null,
+    "unlocked_units": [
+      41
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 40,
+    "name": "syn",
+    "version": "1.0.109",
+    "mode": "todo",
+    "target": "",
+    "start": 0.9,
+    "duration": 2.3,
+    "rmeta_time": 1.65,
+    "unlocked_units": [
+      44,
+      43,
+      42
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 41,
+    "name": "rstest_macros",
+    "version": "0.16.0",
+    "mode": "run-custom-build",
+    "target": " build script (run)",
+    "start": 1.03,
+    "duration": 0.06,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 42,
+    "name": "futures-macro",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 3.2,
+    "duration": 0.72,
+    "rmeta_time": null,
+    "unlocked_units": [
+      46
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 43,
+    "name": "rstest_macros",
+    "version": "0.16.0",
+    "mode": "todo",
+    "target": "",
+    "start": 3.21,
+    "duration": 1.58,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 44,
+    "name": "tokio-macros",
+    "version": "1.8.2",
+    "mode": "todo",
+    "target": "",
+    "start": 3.21,
+    "duration": 0.56,
+    "rmeta_time": null,
+    "unlocked_units": [
+      45
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 45,
+    "name": "tokio",
+    "version": "1.26.0",
+    "mode": "todo",
+    "target": "",
+    "start": 3.77,
+    "duration": 1.17,
+    "rmeta_time": 0.92,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 46,
+    "name": "futures-util",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 3.92,
+    "duration": 1.5,
+    "rmeta_time": 1.43,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      47
+    ]
+  },
+  {
+    "i": 47,
+    "name": "futures-executor",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 5.35,
+    "duration": 0.11,
+    "rmeta_time": 0.07,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      48
+    ]
+  },
+  {
+    "i": 48,
+    "name": "futures",
+    "version": "0.3.27",
+    "mode": "todo",
+    "target": "",
+    "start": 5.43,
+    "duration": 0.04,
+    "rmeta_time": 0.04,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": [
+      49
+    ]
+  },
+  {
+    "i": 49,
+    "name": "rstest",
+    "version": "0.16.0",
+    "mode": "todo",
+    "target": "",
+    "start": 5.46,
+    "duration": 0.06,
+    "rmeta_time": 0.05,
+    "unlocked_units": [
+      50
+    ],
+    "unlocked_rmeta_units": []
+  },
+  {
+    "i": 50,
+    "name": "test_in_test",
+    "version": "0.1.0",
+    "mode": "todo",
+    "target": " lib (test)",
+    "start": 5.52,
+    "duration": 104.79,
+    "rmeta_time": null,
+    "unlocked_units": [],
+    "unlocked_rmeta_units": []
+  }
+];
+const CONCURRENCY_DATA = [
+  {
+    "t": 0.12767262,
+    "active": 1,
+    "waiting": 16,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.132484675,
+    "active": 16,
+    "waiting": 1,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.142356925,
+    "active": 16,
+    "waiting": 1,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.199460801,
+    "active": 16,
+    "waiting": 1,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.203337708,
+    "active": 16,
+    "waiting": 1,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.203753002,
+    "active": 16,
+    "waiting": 1,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.208578722,
+    "active": 16,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.208705135,
+    "active": 16,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.20952715,
+    "active": 15,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.209623056,
+    "active": 15,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.213530729,
+    "active": 15,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.217355406,
+    "active": 14,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.220260846,
+    "active": 13,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.227458137,
+    "active": 13,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.235567993,
+    "active": 13,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.250917664,
+    "active": 12,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.309950723,
+    "active": 12,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.314406968,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 34,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.383922116,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 33,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.385749085,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 33,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.386408355,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 33,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.388764827,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 32,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.3888199,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 32,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.390313469,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.390366162,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 31,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.397429673,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 30,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.397495417,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 30,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.399418718,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.399493874,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 29,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.405567729,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 28,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.405654733,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 28,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.408037611,
+    "active": 9,
+    "waiting": 0,
+    "inactive": 28,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.413601732,
+    "active": 9,
+    "waiting": 0,
+    "inactive": 28,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.434543163,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.434586594,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.434601526,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 26,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.442860504,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.443611283,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 25,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.444863191,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 24,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.444955867,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 24,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.447322037,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 23,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.447421596,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 23,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.463790002,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 22,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.463885805,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 22,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.468841711,
+    "active": 10,
+    "waiting": 1,
+    "inactive": 21,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.468927615,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 21,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.469016892,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 21,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.471134808,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 20,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.471223552,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 20,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.471276588,
+    "active": 11,
+    "waiting": 0,
+    "inactive": 20,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.491951729,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 20,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.508213031,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.508277345,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 19,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.519896602,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.520006227,
+    "active": 10,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.520186973,
+    "active": 9,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.52350665,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.525420093,
+    "active": 8,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.527498538,
+    "active": 7,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.542070532,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 18,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.550801796,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 17,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.550895079,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 17,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.606785038,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 17,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.612217664,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 16,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.612264152,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 16,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.618167461,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 16,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.627183087,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 15,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.627222489,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 15,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.670355067,
+    "active": 5,
+    "waiting": 1,
+    "inactive": 14,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.670577555,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 14,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.670677261,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 14,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.688163695,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.688227148,
+    "active": 6,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.699799468,
+    "active": 5,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.725565011,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.74467045,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.76922671,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.780137323,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.787647722,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 13,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.792526808,
+    "active": 3,
+    "waiting": 1,
+    "inactive": 12,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.792572009,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 12,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.792636663,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 12,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.810824473,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 12,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.841421181,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 11,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.841905326,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 11,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.904296189,
+    "active": 3,
+    "waiting": 1,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.904430989,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.904564836,
+    "active": 4,
+    "waiting": 0,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.911887078,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 0.947292026,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 10,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.027034194,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.027073159,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.027140124,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.088431073,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 1.588614437,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.088821431,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 2.557997233,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.058120051,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 9,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.204875721,
+    "active": 1,
+    "waiting": 2,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.204971587,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.204979943,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.205404761,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.705596715,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 6,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.768542212,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 5,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.768665086,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 5,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.7686827899999997,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 5,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.920246624,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 3.920387262,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 4.420467695,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 4.691038235,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 4.7886179250000005,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 4.943060179,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 4,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.351690525,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.35179764,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.351940274,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.419077907,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 3,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.42494172,
+    "active": 1,
+    "waiting": 1,
+    "inactive": 2,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.425072827,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 2,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.425230308,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 2,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.46149461,
+    "active": 2,
+    "waiting": 1,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.46170204,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.461777778,
+    "active": 3,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.465046257,
+    "active": 2,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.465101691,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.514161583,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 1,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.51992063,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 5.520059398,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 6.020199049,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 6.520442882,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 7.020607157,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 7.52075728,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 8.020921108,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 8.52107432,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 9.02123519,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 9.521394693,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.021543473,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 10.521694767,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 11.021841285,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 11.521990553,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 12.02214304,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 12.522292433,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 13.022441452,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 13.522592955,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 14.022764226,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 14.522880897,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 15.023014773,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 15.523133548,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 16.02324717,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 16.523361585,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 17.023490608,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 17.523615754,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 18.023734292,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 18.523841869,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 19.023961466,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 19.524078057,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 20.024193925,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 20.524305466,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 21.024426228,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 21.524542987,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 22.02465513,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 22.524762763,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 23.024870154,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 23.524977886,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 24.025087596,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 24.525233776,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 25.025384479,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 25.525540393,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 26.025745342,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 26.525943983,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 27.026139066,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 27.526330215,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 28.026522712,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 28.526728698,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 29.026922113,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 29.527109279,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 30.027312929,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 30.527503978,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 31.027687058,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 31.527870108,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 32.028077575,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 32.528285262,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 33.028470539,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 33.528659329,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 34.028863315,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 34.529005759,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 35.029202628,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 35.529395471,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 36.029577918,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 36.529758228,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 37.029941494,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 37.530132595,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 38.030327605,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 38.530509735,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 39.030691571,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 39.530884534,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 40.031066405,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 40.53125074,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 41.031432568,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 41.531629957,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 42.031814922,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 42.532028843,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 43.032245967,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 43.5324189,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 44.032618982,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 44.532741251,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 45.032925412,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 45.533107566,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 46.033319836,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 46.533514852,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 47.033691544,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 47.533879945,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 48.034076352,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 48.534278147,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 49.034459992,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 49.534657907,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 50.034844595,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 50.535029776,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 51.035231003,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 51.535432288,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 52.035614314,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 52.535817481,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 53.036002988,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 53.536188713,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 54.036372097,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 54.536555575,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 55.036742791,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 55.536931754,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 56.03713604,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 56.537320621,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 57.037501624,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 57.537709196,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 58.037889285,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 58.538094813,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 59.038283669,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 59.538487049,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 60.038690071,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 60.538884386,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 61.039077915,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 61.539266602,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 62.039451874,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 62.539639356,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 63.039820192,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 63.540008326,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 64.040210973,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 64.540399666,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 65.040600054,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 65.540787643,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 66.040971947,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 66.541163324,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 67.04135518,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 67.5415525,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 68.041751186,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 68.541946263,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 69.04213568,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 69.542329343,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 70.042516463,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 70.54271671,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 71.042916262,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 71.543111537,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 72.043331463,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 72.543522478,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 73.043724827,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 73.543914363,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 74.044099495,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 74.544311709,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 75.04450728,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 75.544647048,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 76.04482288,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 76.545003197,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 77.045204664,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 77.545399054,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 78.045583211,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 78.54576256,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 79.045947453,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 79.546136075,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 80.046328337,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 80.546516375,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 81.046704032,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 81.546920447,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 82.047108961,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 82.547308929,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 83.047486445,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 83.547657088,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 84.047849237,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 84.548042396,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 85.048256384,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 85.548452945,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 86.048632633,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 86.548827107,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 87.049022463,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 87.54916622,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 88.049357631,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 88.549487061,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 89.049699297,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 89.549889969,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 90.050025055,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 90.550202816,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 91.050409872,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 91.550609034,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 92.050754068,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 92.550978045,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 93.051115462,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 93.551282824,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 94.051450452,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 94.551610308,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 95.051769132,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 95.551920503,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 96.052149544,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 96.552348155,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 97.052545432,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 97.552683157,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 98.052873982,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 98.553067887,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 99.053278421,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 99.553486056,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 100.053683413,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 100.553875278,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 101.05406282,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 101.554258722,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 102.05445383,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 102.554635643,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 103.05483964,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 103.555035761,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 104.055237236,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 104.555446438,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 105.055645884,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 105.555842307,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 106.056030063,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 106.556241696,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 107.056441229,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 107.556636867,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 108.056822986,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 108.557029638,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 109.057231567,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 109.557436935,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 110.057656638,
+    "active": 1,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  },
+  {
+    "t": 110.306414053,
+    "active": 0,
+    "waiting": 0,
+    "inactive": 0,
+    "rustc_parallelism": 0
+  }
+];
+const CPU_USAGE = [
+  [
+    0.227458594,
+    90.47619047619048
+  ],
+  [
+    0.383922306,
+    91.56626506024097
+  ],
+  [
+    0.49195272,
+    83.72093023255815
+  ],
+  [
+    0.606786332,
+    55.67567567567567
+  ],
+  [
+    0.725565357,
+    44.44444444444444
+  ],
+  [
+    0.841421575,
+    48.108108108108105
+  ],
+  [
+    0.947292485,
+    41.31736526946108
+  ],
+  [
+    1.088431706,
+    15.044247787610615
+  ],
+  [
+    1.588614927,
+    6.265664160401002
+  ],
+  [
+    2.088821945,
+    6.375
+  ],
+  [
+    2.557997593,
+    6.408544726301741
+  ],
+  [
+    3.058120691,
+    25.625
+  ],
+  [
+    3.204875884,
+    21.276595744680847
+  ],
+  [
+    3.705598154,
+    27.318295739348372
+  ],
+  [
+    3.920247465,
+    31.884057971014485
+  ],
+  [
+    4.420470102,
+    35.294117647058826
+  ],
+  [
+    4.691038662,
+    18.561484918793496
+  ],
+  [
+    4.943060353,
+    31.09452736318407
+  ],
+  [
+    5.351690849,
+    6.441717791411037
+  ],
+  [
+    5.461496073,
+    23.391812865497073
+  ],
+  [
+    6.020200437,
+    6.8309070548712185
+  ],
+  [
+    6.520451377,
+    6.2578222778473105
+  ],
+  [
+    7.020607357,
+    6.36704119850188
+  ],
+  [
+    7.520757908,
+    6.25
+  ],
+  [
+    8.020921997,
+    6.5
+  ],
+  [
+    8.521075007,
+    6.375
+  ],
+  [
+    9.021235621,
+    6.38297872340425
+  ],
+  [
+    9.521395173,
+    6.38297872340425
+  ],
+  [
+    10.021543604,
+    6.36704119850188
+  ],
+  [
+    10.521694968,
+    6.2578222778473105
+  ],
+  [
+    11.021841483,
+    6.375
+  ],
+  [
+    11.521991202,
+    6.25
+  ],
+  [
+    12.02214358,
+    6.25
+  ],
+  [
+    12.522292981,
+    6.7584480600750965
+  ],
+  [
+    13.022441725,
+    6.75
+  ],
+  [
+    13.522593539,
+    6.5
+  ],
+  [
+    14.022764768,
+    6.616729088639204
+  ],
+  [
+    14.52288141,
+    8.531994981179423
+  ],
+  [
+    15.023015187,
+    6.2578222778473105
+  ],
+  [
+    15.523133843,
+    6.25
+  ],
+  [
+    16.023247375,
+    6.2578222778473105
+  ],
+  [
+    16.523362134,
+    7.259073842302882
+  ],
+  [
+    17.023491219,
+    6.375
+  ],
+  [
+    17.523616189,
+    6.2578222778473105
+  ],
+  [
+    18.02373444,
+    6.25
+  ],
+  [
+    18.523842215,
+    6.5081351689612035
+  ],
+  [
+    19.023961896,
+    6.375
+  ],
+  [
+    19.524078441,
+    6.5
+  ],
+  [
+    20.024194226,
+    6.2578222778473105
+  ],
+  [
+    20.524305948,
+    6.375
+  ],
+  [
+    21.024426655,
+    6.2578222778473105
+  ],
+  [
+    21.524543426,
+    6.375
+  ],
+  [
+    22.024655334,
+    6.2578222778473105
+  ],
+  [
+    22.524763575,
+    6.2578222778473105
+  ],
+  [
+    23.024870381,
+    6.2578222778473105
+  ],
+  [
+    23.524978101,
+    6.375
+  ],
+  [
+    24.025088098,
+    6.5081351689612035
+  ],
+  [
+    24.52523443,
+    6.25
+  ],
+  [
+    25.025385188,
+    6.2578222778473105
+  ],
+  [
+    25.525540934,
+    6.5
+  ],
+  [
+    26.025746305,
+    6.2578222778473105
+  ],
+  [
+    26.525945883,
+    6.75
+  ],
+  [
+    27.026140024,
+    6.265664160401002
+  ],
+  [
+    27.526330706,
+    6.132665832290357
+  ],
+  [
+    28.026523379,
+    6.375
+  ],
+  [
+    28.526729272,
+    6.375
+  ],
+  [
+    29.026922583,
+    6.491885143570542
+  ],
+  [
+    29.527110738,
+    6.2578222778473105
+  ],
+  [
+    30.027314156,
+    6.741573033707866
+  ],
+  [
+    30.527504995,
+    6.2578222778473105
+  ],
+  [
+    31.027688124,
+    6.5
+  ],
+  [
+    31.527870636,
+    6.375
+  ],
+  [
+    32.02807853,
+    6.25
+  ],
+  [
+    32.528285849,
+    6.5
+  ],
+  [
+    33.028471061,
+    6.25
+  ],
+  [
+    33.52865987,
+    6.5
+  ],
+  [
+    34.02886478,
+    6.375
+  ],
+  [
+    34.529006678,
+    6.5
+  ],
+  [
+    35.029203517,
+    6.25
+  ],
+  [
+    35.529396399,
+    6.2578222778473105
+  ],
+  [
+    36.029578644,
+    6.633291614518143
+  ],
+  [
+    36.529758697,
+    6.132665832290357
+  ],
+  [
+    37.029942393,
+    6.375
+  ],
+  [
+    37.530134,
+    6.375
+  ],
+  [
+    38.030328106,
+    6.36704119850188
+  ],
+  [
+    38.530510884,
+    6.1403508771929864
+  ],
+  [
+    39.030692045,
+    6.608478802992522
+  ],
+  [
+    39.530885033,
+    6.2578222778473105
+  ],
+  [
+    40.031067291,
+    6.375
+  ],
+  [
+    40.531251609,
+    6.375
+  ],
+  [
+    41.031433474,
+    6.38297872340425
+  ],
+  [
+    41.531630442,
+    6.375
+  ],
+  [
+    42.031815975,
+    6.5
+  ],
+  [
+    42.532029339,
+    6.265664160401002
+  ],
+  [
+    43.032246845,
+    7.365792759051175
+  ],
+  [
+    43.532419371,
+    7.142857142857139
+  ],
+  [
+    44.032619848,
+    7.0
+  ],
+  [
+    44.53274178,
+    7.625
+  ],
+  [
+    45.03292638,
+    6.875
+  ],
+  [
+    45.533108198,
+    6.75
+  ],
+  [
+    46.033320403,
+    6.2578222778473105
+  ],
+  [
+    46.533515494,
+    6.7584480600750965
+  ],
+  [
+    47.033692032,
+    6.2578222778473105
+  ],
+  [
+    47.533880892,
+    6.36704119850188
+  ],
+  [
+    48.034077262,
+    6.2578222778473105
+  ],
+  [
+    48.534278749,
+    6.375
+  ],
+  [
+    49.034460947,
+    6.5
+  ],
+  [
+    49.53465884,
+    6.491885143570542
+  ],
+  [
+    50.034845111,
+    6.38297872340425
+  ],
+  [
+    50.535031203,
+    6.132665832290357
+  ],
+  [
+    51.035231504,
+    6.375
+  ],
+  [
+    51.535433423,
+    6.2578222778473105
+  ],
+  [
+    52.035614822,
+    6.132665832290357
+  ],
+  [
+    52.535818087,
+    6.5
+  ],
+  [
+    53.03600365,
+    6.375
+  ],
+  [
+    53.536189502,
+    6.375
+  ],
+  [
+    54.036372596,
+    6.375
+  ],
+  [
+    54.536556585,
+    6.625
+  ],
+  [
+    55.036743274,
+    6.5
+  ],
+  [
+    55.536932618,
+    6.516290726817047
+  ],
+  [
+    56.037136544,
+    6.36704119850188
+  ],
+  [
+    56.537321143,
+    6.375
+  ],
+  [
+    57.03750251,
+    6.2578222778473105
+  ],
+  [
+    57.537710362,
+    6.491885143570542
+  ],
+  [
+    58.037889768,
+    6.25
+  ],
+  [
+    58.538095687,
+    6.2578222778473105
+  ],
+  [
+    59.038284556,
+    6.375
+  ],
+  [
+    59.538487986,
+    6.375
+  ],
+  [
+    60.038691008,
+    6.491885143570542
+  ],
+  [
+    60.538885355,
+    8.48938826466916
+  ],
+  [
+    61.039078397,
+    6.2578222778473105
+  ],
+  [
+    61.539267565,
+    6.375
+  ],
+  [
+    62.039452807,
+    6.25
+  ],
+  [
+    62.53963985,
+    6.2578222778473105
+  ],
+  [
+    63.039821126,
+    6.36704119850188
+  ],
+  [
+    63.54000882,
+    6.2578222778473105
+  ],
+  [
+    64.040211498,
+    6.36704119850188
+  ],
+  [
+    64.5404002,
+    6.38297872340425
+  ],
+  [
+    65.040600642,
+    6.5
+  ],
+  [
+    65.540788145,
+    6.36704119850188
+  ],
+  [
+    66.040972529,
+    6.1403508771929864
+  ],
+  [
+    66.54116382,
+    6.25
+  ],
+  [
+    67.04135604,
+    6.2578222778473105
+  ],
+  [
+    67.541553015,
+    6.36704119850188
+  ],
+  [
+    68.041751679,
+    6.2578222778473105
+  ],
+  [
+    68.541946749,
+    6.2578222778473105
+  ],
+  [
+    69.04213618,
+    6.375
+  ],
+  [
+    69.542329851,
+    6.375
+  ],
+  [
+    70.042517519,
+    6.375
+  ],
+  [
+    70.542734909,
+    6.375
+  ],
+  [
+    71.042917128,
+    6.25
+  ],
+  [
+    71.543112183,
+    6.2578222778473105
+  ],
+  [
+    72.043332331,
+    6.132665832290357
+  ],
+  [
+    72.543522968,
+    6.375
+  ],
+  [
+    73.043725363,
+    6.25
+  ],
+  [
+    73.543915414,
+    6.375
+  ],
+  [
+    74.04410052,
+    6.132665832290357
+  ],
+  [
+    74.544312594,
+    8.010012515644561
+  ],
+  [
+    75.044507801,
+    6.75
+  ],
+  [
+    75.544647549,
+    6.633291614518143
+  ],
+  [
+    76.044823381,
+    6.375
+  ],
+  [
+    76.545003788,
+    6.649937264742789
+  ],
+  [
+    77.045205167,
+    6.491885143570542
+  ],
+  [
+    77.545399952,
+    6.25
+  ],
+  [
+    78.045584176,
+    6.1403508771929864
+  ],
+  [
+    78.545763064,
+    6.36704119850188
+  ],
+  [
+    79.045947979,
+    6.2578222778473105
+  ],
+  [
+    79.546137724,
+    6.2578222778473105
+  ],
+  [
+    80.046329385,
+    6.25
+  ],
+  [
+    80.546517359,
+    6.491885143570542
+  ],
+  [
+    81.046704615,
+    6.2578222778473105
+  ],
+  [
+    81.546920968,
+    6.625
+  ],
+  [
+    82.047109851,
+    6.132665832290357
+  ],
+  [
+    82.547309824,
+    6.875
+  ],
+  [
+    83.047487146,
+    6.25
+  ],
+  [
+    83.547658135,
+    6.2578222778473105
+  ],
+  [
+    84.047849762,
+    6.36704119850188
+  ],
+  [
+    84.548043056,
+    6.5
+  ],
+  [
+    85.048257354,
+    6.5
+  ],
+  [
+    85.548453855,
+    6.38297872340425
+  ],
+  [
+    86.048633118,
+    6.25
+  ],
+  [
+    86.548828614,
+    6.390977443609032
+  ],
+  [
+    87.049023406,
+    6.36704119850188
+  ],
+  [
+    87.549166723,
+    6.625
+  ],
+  [
+    88.049358232,
+    6.25
+  ],
+  [
+    88.549487595,
+    20.65081351689612
+  ],
+  [
+    89.049699813,
+    29.662077596996255
+  ],
+  [
+    89.549890527,
+    30.25
+  ],
+  [
+    90.050025925,
+    31.03879849812266
+  ],
+  [
+    90.550203522,
+    31.077694235588964
+  ],
+  [
+    91.05041043,
+    31.920199501246884
+  ],
+  [
+    91.550609689,
+    33.79224030037547
+  ],
+  [
+    92.05075468,
+    31.914893617021278
+  ],
+  [
+    92.550978578,
+    28.070175438596493
+  ],
+  [
+    93.051116084,
+    18.125
+  ],
+  [
+    93.551283489,
+    25.563909774436084
+  ],
+  [
+    94.051451095,
+    18.77346683354193
+  ],
+  [
+    94.551610794,
+    19.0
+  ],
+  [
+    95.051769794,
+    18.77346683354193
+  ],
+  [
+    95.551921335,
+    18.77346683354193
+  ],
+  [
+    96.052150048,
+    14.51814768460575
+  ],
+  [
+    96.55234864,
+    6.625
+  ],
+  [
+    97.052546537,
+    6.2578222778473105
+  ],
+  [
+    97.552683675,
+    6.2578222778473105
+  ],
+  [
+    98.052875635,
+    6.36704119850188
+  ],
+  [
+    98.553068415,
+    6.375
+  ],
+  [
+    99.053278971,
+    6.2578222778473105
+  ],
+  [
+    99.553487054,
+    6.483790523690772
+  ],
+  [
+    100.053683978,
+    6.38297872340425
+  ],
+  [
+    100.553875767,
+    6.1403508771929864
+  ],
+  [
+    101.054063352,
+    6.608478802992522
+  ],
+  [
+    101.554259625,
+    6.265664160401002
+  ],
+  [
+    102.054455205,
+    7.0
+  ],
+  [
+    102.554636252,
+    6.375
+  ],
+  [
+    103.054840144,
+    6.1403508771929864
+  ],
+  [
+    103.555036705,
+    6.36704119850188
+  ],
+  [
+    104.055237734,
+    6.375
+  ],
+  [
+    104.55544736,
+    6.625
+  ],
+  [
+    105.055647102,
+    6.2578222778473105
+  ],
+  [
+    105.555842801,
+    6.741573033707866
+  ],
+  [
+    106.056030565,
+    6.5
+  ],
+  [
+    106.556242364,
+    6.7584480600750965
+  ],
+  [
+    107.056441712,
+    6.390977443609032
+  ],
+  [
+    107.556637358,
+    6.7584480600750965
+  ],
+  [
+    108.05682455,
+    6.36704119850188
+  ],
+  [
+    108.557030149,
+    6.2578222778473105
+  ],
+  [
+    109.05723243,
+    6.2578222778473105
+  ],
+  [
+    109.557437866,
+    6.491885143570542
+  ],
+  [
+    110.057657504,
+    6.2578222778473105
+  ]
+];
+// Position of the vertical axis.
+const X_LINE = 50;
+// General-use margin size.
+const MARGIN = 5;
+// Position of the horizontal axis, relative to the bottom.
+const Y_LINE = 35;
+// Minimum distance between time tick labels.
+const MIN_TICK_DIST = 50;
+// Radius for rounded rectangle corners.
+const RADIUS = 3;
+// Height of unit boxes.
+const BOX_HEIGHT = 25;
+// Distance between Y tick marks on the unit graph.
+const Y_TICK_DIST = BOX_HEIGHT + 2;
+// Rects used for mouseover detection.
+// Objects of {x, y, x2, y2, i} where `i` is the index into UNIT_DATA.
+let HIT_BOXES = [];
+// Index into UNIT_DATA of the last unit hovered over by mouse.
+let LAST_HOVER = null;
+// Key is unit index, value is {x, y, width, rmeta_x} of the box.
+let UNIT_COORDS = {};
+// Map of unit index to the index it was unlocked by.
+let REVERSE_UNIT_DEPS = {};
+let REVERSE_UNIT_RMETA_DEPS = {};
+for (let n=0; n<UNIT_DATA.length; n++) {
+  let unit = UNIT_DATA[n];
+  for (let unlocked of unit.unlocked_units) {
+    REVERSE_UNIT_DEPS[unlocked] = n;
+  }
+  for (let unlocked of unit.unlocked_rmeta_units) {
+    REVERSE_UNIT_RMETA_DEPS[unlocked] = n;
+  }
+}
+
+function render_pipeline_graph() {
+  if (UNIT_DATA.length == 0) {
+    return;
+  }
+  let g = document.getElementById('pipeline-graph');
+  HIT_BOXES.length = 0;
+  g.onmousemove = pipeline_mousemove;
+  const min_time = document.getElementById('min-unit-time').valueAsNumber;
+
+  const units = UNIT_DATA.filter(unit => unit.duration >= min_time);
+
+  const graph_height = Y_TICK_DIST * units.length;
+  const {ctx, graph_width, canvas_width, canvas_height, px_per_sec} = draw_graph_axes('pipeline-graph', graph_height);
+  const container = document.getElementById('pipeline-container');
+  container.style.width = canvas_width;
+  container.style.height = canvas_height;
+
+  // Canvas for hover highlights. This is a separate layer to improve performance.
+  const linectx = setup_canvas('pipeline-graph-lines', canvas_width, canvas_height);
+  linectx.clearRect(0, 0, canvas_width, canvas_height);
+
+  // Draw Y tick marks.
+  for (let n=1; n<units.length; n++) {
+    const y = MARGIN + Y_TICK_DIST * n;
+    ctx.beginPath();
+    ctx.moveTo(X_LINE, y);
+    ctx.lineTo(X_LINE-5, y);
+    ctx.stroke();
+  }
+
+  // Draw Y labels.
+  ctx.textAlign = 'end';
+  ctx.textBaseline = 'middle';
+  for (let n=0; n<units.length; n++) {
+    let y = MARGIN + Y_TICK_DIST * n + Y_TICK_DIST / 2;
+    ctx.fillText(n+1, X_LINE-4, y);
+  }
+
+  // Draw the graph.
+  ctx.save();
+  ctx.translate(X_LINE, MARGIN);
+
+  // Compute x,y coordinate of each block.
+  UNIT_COORDS = {};
+  for (i=0; i<units.length; i++) {
+    let unit = units[i];
+    let y = i * Y_TICK_DIST + 1;
+    let x = px_per_sec * unit.start;
+    let rmeta_x = null;
+    if (unit.rmeta_time != null) {
+      rmeta_x = x + px_per_sec * unit.rmeta_time;
+    }
+    let width = Math.max(px_per_sec * unit.duration, 1.0);
+    UNIT_COORDS[unit.i] = {x, y, width, rmeta_x};
+  }
+
+  // Draw the blocks.
+  for (i=0; i<units.length; i++) {
+    let unit = units[i];
+    let {x, y, width, rmeta_x} = UNIT_COORDS[unit.i];
+
+    HIT_BOXES.push({x: X_LINE+x, y:MARGIN+y, x2: X_LINE+x+width, y2: MARGIN+y+BOX_HEIGHT, i: unit.i});
+
+    ctx.beginPath();
+    ctx.fillStyle = unit.mode == 'run-custom-build' ? '#f0b165' : '#95cce8';
+    roundedRect(ctx, x, y, width, BOX_HEIGHT, RADIUS);
+    ctx.fill();
+
+    if (unit.rmeta_time != null) {
+      ctx.beginPath();
+      ctx.fillStyle = '#aa95e8';
+      let ctime = unit.duration - unit.rmeta_time;
+      roundedRect(ctx, rmeta_x, y, px_per_sec * ctime, BOX_HEIGHT, RADIUS);
+      ctx.fill();
+    }
+    ctx.fillStyle = "#000";
+    ctx.textAlign = 'start';
+    ctx.textBaseline = 'middle';
+    ctx.font = '14px sans-serif';
+    const label = `${unit.name}${unit.target} ${unit.duration}s`;
+    const text_info = ctx.measureText(label);
+    const label_x = Math.min(x + 5.0, canvas_width - text_info.width - X_LINE);
+    ctx.fillText(label, label_x, y + BOX_HEIGHT / 2);
+    draw_dep_lines(ctx, unit.i, false);
+  }
+  ctx.restore();
+}
+
+// Draws lines from the given unit to the units it unlocks.
+function draw_dep_lines(ctx, unit_idx, highlighted) {
+  const unit = UNIT_DATA[unit_idx];
+  const {x, y, rmeta_x} = UNIT_COORDS[unit_idx];
+  ctx.save();
+  for (const unlocked of unit.unlocked_units) {
+    draw_one_dep_line(ctx, x, y, unlocked, highlighted);
+  }
+  for (const unlocked of unit.unlocked_rmeta_units) {
+    draw_one_dep_line(ctx, rmeta_x, y, unlocked, highlighted);
+  }
+  ctx.restore();
+}
+
+function draw_one_dep_line(ctx, from_x, from_y, to_unit, highlighted) {
+  if (to_unit in UNIT_COORDS) {
+    let {x: u_x, y: u_y} = UNIT_COORDS[to_unit];
+    ctx.strokeStyle = highlighted ? '#000' : '#ddd';
+    ctx.setLineDash([2]);
+    ctx.beginPath();
+    ctx.moveTo(from_x, from_y+BOX_HEIGHT/2);
+    ctx.lineTo(from_x-5, from_y+BOX_HEIGHT/2);
+    ctx.lineTo(from_x-5, u_y+BOX_HEIGHT/2);
+    ctx.lineTo(u_x, u_y+BOX_HEIGHT/2);
+    ctx.stroke();
+  }
+}
+
+function render_timing_graph() {
+  if (CONCURRENCY_DATA.length == 0) {
+    return;
+  }
+  const HEIGHT = 400;
+  const AXIS_HEIGHT = HEIGHT - MARGIN - Y_LINE;
+  const TOP_MARGIN = 10;
+  const GRAPH_HEIGHT = AXIS_HEIGHT - TOP_MARGIN;
+
+  const {canvas_width, graph_width, ctx} = draw_graph_axes('timing-graph', AXIS_HEIGHT);
+
+  // Draw Y tick marks and labels.
+  let max_v = 0;
+  for (c of CONCURRENCY_DATA) {
+    max_v = Math.max(max_v, c.active, c.waiting, c.inactive);
+  }
+  const px_per_v = GRAPH_HEIGHT / max_v;
+  const {step, tick_dist, num_ticks} = split_ticks(max_v, px_per_v, GRAPH_HEIGHT);
+  ctx.textAlign = 'end';
+  for (n=0; n<num_ticks; n++) {
+    let y = HEIGHT - Y_LINE - ((n + 1) * tick_dist);
+    ctx.beginPath();
+    ctx.moveTo(X_LINE, y);
+    ctx.lineTo(X_LINE-5, y);
+    ctx.stroke();
+    ctx.fillText((n+1) * step, X_LINE-10, y+5);
+  }
+
+  // Label the Y axis.
+  let label_y = (HEIGHT - Y_LINE) / 2;
+  ctx.save();
+  ctx.translate(15, label_y);
+  ctx.rotate(3*Math.PI/2);
+  ctx.textAlign = 'center';
+  ctx.fillText('# Units', 0, 0);
+  ctx.restore();
+
+  // Draw the graph.
+  ctx.save();
+  ctx.translate(X_LINE, MARGIN);
+
+  function coord(t, v) {
+    return {
+      x: graph_width * (t/DURATION),
+      y: TOP_MARGIN + GRAPH_HEIGHT * (1.0 - (v / max_v))
+    };
+  }
+
+  const cpuFillStyle = 'rgba(250, 119, 0, 0.2)';
+  if (CPU_USAGE.length > 1) {
+    ctx.beginPath();
+    ctx.fillStyle = cpuFillStyle;
+    let bottomLeft = coord(CPU_USAGE[0][0], 0);
+    ctx.moveTo(bottomLeft.x, bottomLeft.y);
+    for (let i=0; i < CPU_USAGE.length; i++) {
+      let [time, usage] = CPU_USAGE[i];
+      let {x, y} = coord(time, usage / 100.0 * max_v);
+      ctx.lineTo(x, y);
+    }
+    let bottomRight = coord(CPU_USAGE[CPU_USAGE.length - 1][0], 0);
+    ctx.lineTo(bottomRight.x, bottomRight.y);
+    ctx.fill();
+  }
+
+  function draw_line(style, key) {
+    let first = CONCURRENCY_DATA[0];
+    let last = coord(first.t, key(first));
+    ctx.strokeStyle = style;
+    ctx.beginPath();
+    ctx.moveTo(last.x, last.y);
+    for (let i=1; i<CONCURRENCY_DATA.length; i++) {
+      let c = CONCURRENCY_DATA[i];
+      let {x, y} = coord(c.t, key(c));
+      ctx.lineTo(x, last.y);
+      ctx.lineTo(x, y);
+      last = {x, y};
+    }
+    ctx.stroke();
+  }
+
+  draw_line('blue', function(c) {return c.inactive;});
+  draw_line('red', function(c) {return c.waiting;});
+  draw_line('green', function(c) {return c.active;});
+
+  // Draw a legend.
+  ctx.restore();
+  ctx.save();
+  ctx.translate(canvas_width-200, MARGIN);
+  // background
+  ctx.fillStyle = '#fff';
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 1;
+  ctx.textBaseline = 'middle'
+  ctx.textAlign = 'start';
+  ctx.beginPath();
+  ctx.rect(0, 0, 150, 82);
+  ctx.stroke();
+  ctx.fill();
+
+  ctx.fillStyle = '#000'
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'red';
+  ctx.moveTo(5, 10);
+  ctx.lineTo(50, 10);
+  ctx.stroke();
+  ctx.fillText('Waiting', 54, 11);
+
+  ctx.beginPath();
+  ctx.strokeStyle = 'blue';
+  ctx.moveTo(5, 30);
+  ctx.lineTo(50, 30);
+  ctx.stroke();
+  ctx.fillText('Inactive', 54, 31);
+
+  ctx.beginPath();
+  ctx.strokeStyle = 'green';
+  ctx.moveTo(5, 50);
+  ctx.lineTo(50, 50);
+  ctx.stroke();
+  ctx.fillText('Active', 54, 51);
+
+  ctx.beginPath();
+  ctx.fillStyle = cpuFillStyle
+  ctx.fillRect(15, 60, 30, 15);
+  ctx.fill();
+  ctx.fillStyle = 'black';
+  ctx.fillText('CPU Usage', 54, 71);
+
+  ctx.restore();
+}
+
+function setup_canvas(id, width, height) {
+  let g = document.getElementById(id);
+  let dpr = window.devicePixelRatio || 1;
+  g.width = width * dpr;
+  g.height = height * dpr;
+  g.style.width = width;
+  g.style.height = height;
+  let ctx = g.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
+function draw_graph_axes(id, graph_height) {
+  const scale = document.getElementById('scale').valueAsNumber;
+  // Cap the size of the graph. It is hard to view if it is too large, and
+  // browsers may not render a large graph because it takes too much memory.
+  // 4096 is still ridiculously large, and probably won't render on mobile
+  // browsers, but should be ok for many desktop environments.
+  const graph_width = Math.min(scale * DURATION, 4096);
+  const px_per_sec = graph_width / DURATION;
+  const canvas_width = Math.max(graph_width + X_LINE + 30, X_LINE + 250);
+  const canvas_height = graph_height + MARGIN + Y_LINE;
+  let ctx = setup_canvas(id, canvas_width, canvas_height);
+  ctx.fillStyle = '#f7f7f7';
+  ctx.fillRect(0, 0, canvas_width, canvas_height);
+
+  ctx.lineWidth = 2;
+  ctx.font = '16px sans-serif';
+  ctx.textAlign = 'center';
+
+  // Draw main axes.
+  ctx.beginPath();
+  ctx.moveTo(X_LINE, MARGIN);
+  ctx.lineTo(X_LINE, graph_height + MARGIN);
+  ctx.lineTo(X_LINE+graph_width+20, graph_height + MARGIN);
+  ctx.stroke();
+
+  // Draw X tick marks.
+  const {step, tick_dist, num_ticks} = split_ticks(DURATION, px_per_sec, graph_width);
+  ctx.fillStyle = '#303030';
+  for (let n=0; n<num_ticks; n++) {
+    const x = X_LINE + ((n + 1) * tick_dist);
+    ctx.beginPath();
+    ctx.moveTo(x, canvas_height-Y_LINE);
+    ctx.lineTo(x, canvas_height-Y_LINE+5);
+    ctx.stroke();
+
+    ctx.fillText(`${(n+1) * step}s`, x, canvas_height - Y_LINE + 20);
+  }
+
+  // Draw vertical lines.
+  ctx.strokeStyle = '#e6e6e6';
+  ctx.setLineDash([2, 4]);
+  for (n=0; n<num_ticks; n++) {
+    const x = X_LINE + ((n + 1) * tick_dist);
+    ctx.beginPath();
+    ctx.moveTo(x, MARGIN);
+    ctx.lineTo(x, MARGIN+graph_height);
+    ctx.stroke();
+  }
+  ctx.strokeStyle = '#000';
+  ctx.setLineDash([]);
+  return {canvas_width, canvas_height, graph_width, graph_height, ctx, px_per_sec};
+}
+
+// Determine the spacing and number of ticks along an axis.
+function split_ticks(max_value, px_per_v, max_px) {
+  const max_ticks = Math.floor(max_px / MIN_TICK_DIST);
+  if (max_ticks <= 1) {
+    // Graph is too small for even 1 tick.
+    return {step: max_value, tick_dist: max_px, num_ticks: 1};
+  }
+  let step;
+  if (max_value <= max_ticks) {
+    step = 1;
+  } else if (max_value <= max_ticks * 2) {
+    step = 2;
+  } else if (max_value <= max_ticks * 4) {
+    step = 4;
+  } else if (max_value <= max_ticks * 5) {
+    step = 5;
+  } else {
+    step = 10;
+    let count = 0;
+    while (true) {
+      if (count > 100) {
+        throw Error("tick loop too long");
+      }
+      count += 1;
+      if (max_value <= max_ticks * step) {
+        break;
+      }
+      step += 10;
+    }
+  }
+  const tick_dist = px_per_v * step;
+  const num_ticks = Math.floor(max_value / step);
+  return {step, tick_dist, num_ticks};
+}
+
+function codegen_time(unit) {
+  if (unit.rmeta_time == null) {
+    return null;
+  }
+  let ctime = unit.duration - unit.rmeta_time;
+  return [unit.rmeta_time, ctime];
+}
+
+function roundedRect(ctx, x, y, width, height, r) {
+  r = Math.min(r, width, height);
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+width-r, y);
+  ctx.arc(x+width-r, y+r, r, 3*Math.PI/2, 0);
+  ctx.lineTo(x+width, y+height-r);
+  ctx.arc(x+width-r, y+height-r, r, 0, Math.PI/2);
+  ctx.lineTo(x+r, y+height);
+  ctx.arc(x+r, y+height-r, r, Math.PI/2, Math.PI);
+  ctx.lineTo(x, y-r);
+  ctx.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
+  ctx.closePath();
+}
+
+function pipeline_mouse_hit(event) {
+  // This brute-force method can be optimized if needed.
+  for (let box of HIT_BOXES) {
+    if (event.offsetX >= box.x && event.offsetX <= box.x2 &&
+        event.offsetY >= box.y && event.offsetY <= box.y2) {
+      return box;
+    }
+  }
+}
+
+function pipeline_mousemove(event) {
+  // Highlight dependency lines on mouse hover.
+  let box = pipeline_mouse_hit(event);
+  if (box) {
+    if (box.i != LAST_HOVER) {
+      LAST_HOVER = box.i;
+      let g = document.getElementById('pipeline-graph-lines');
+      let ctx = g.getContext('2d');
+      ctx.clearRect(0, 0, g.width, g.height);
+      ctx.save();
+      ctx.translate(X_LINE, MARGIN);
+      ctx.lineWidth = 2;
+      draw_dep_lines(ctx, box.i, true);
+
+      if (box.i in REVERSE_UNIT_DEPS) {
+        const dep_unit = REVERSE_UNIT_DEPS[box.i];
+        if (dep_unit in UNIT_COORDS) {
+          const {x, y, rmeta_x} = UNIT_COORDS[dep_unit];
+          draw_one_dep_line(ctx, x, y, box.i, true);
+        }
+      }
+      if (box.i in REVERSE_UNIT_RMETA_DEPS) {
+        const dep_unit = REVERSE_UNIT_RMETA_DEPS[box.i];
+        if (dep_unit in UNIT_COORDS) {
+          const {x, y, rmeta_x} = UNIT_COORDS[dep_unit];
+          draw_one_dep_line(ctx, rmeta_x, y, box.i, true);
+        }
+      }
+      ctx.restore();
+    }
+  }
+}
+
+render_pipeline_graph();
+render_timing_graph();
+
+// Set up and handle controls.
+{
+  const range = document.getElementById('min-unit-time');
+  const time_output = document.getElementById('min-unit-time-output');
+  time_output.innerHTML = `${range.value}s`;
+  range.oninput = event => {
+    time_output.innerHTML = `${range.value}s`;
+    render_pipeline_graph();
+  };
+
+  const scale = document.getElementById('scale');
+  const scale_output = document.getElementById('scale-output');
+  scale_output.innerHTML = `${scale.value}`;
+  scale.oninput = event => {
+    scale_output.innerHTML = `${scale.value}`;
+    render_pipeline_graph();
+    render_timing_graph();
+  };
+}
+
+</script>
+</body>
+</html>
